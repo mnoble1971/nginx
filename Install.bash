@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+IP=`hostname -I | awk '{print $1}'`
 sudo dnf install -y nginx
 sudo systemctl enable --now nginx
 
@@ -24,6 +25,7 @@ cp nginx.conf /etc/nginx/nginx.conf
 # certs
 sudo mkdir -p /etc/nginx/certs
 cp openssl-ip.cnf /etc/nginx/certs/openssl-ip.cnf
+sed -i "s/insert_ip/${IP}/g" /etc/nginx/certs/openssl-ip.cnf
 sudo openssl req -x509 -nodes -days 825 -newkey rsa:2048 \
   -keyout /etc/nginx/certs/nginx.key \
   -out /etc/nginx/certs/nginx.crt \
@@ -37,5 +39,4 @@ sudo nginx -t && sudo systemctl reload nginx
 setenforce 0
 echo "YOUR_TOKEN=$TOKEN"
 
-IP=`hostname -I | awk '{print $1}'`
 echo "curl -ik -H \"Authorization: Bearer $TOKEN\" https://$IP/api/dynatrace/report.txt"

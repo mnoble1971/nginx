@@ -6,10 +6,10 @@ req_extensions     = req_ext
 distinguished_name = dn
 
 [dn]
-CN = 192.168.18.57
+CN = insert_ip
 
 [req_ext]
 subjectAltName = @alt_names
 
 [alt_names]
-IP.1 = 192.168.18.77
+IP.1 = insert_ip
