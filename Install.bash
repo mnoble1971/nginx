@@ -18,6 +18,7 @@ sudo htpasswd -c /etc/nginx/.htpasswd portaluser
 
 cp index.html /var/www/html/index.html
 cp portal.conf /etc/nginx/conf.d/portal.conf
+sed -i "s/insert_token/${TOKEN}/g" /etc/nginx/conf.d/portal.conf
 cp nginx.conf /etc/nginx/nginx.conf
 
 # certs
@@ -34,3 +35,4 @@ sudo chmod 600 /etc/nginx/certs/nginx.key
 sudo nginx -t && sudo systemctl reload nginx
 
 setenforce 0
+echo "YOUR_TOKEN=$TOKEN"
