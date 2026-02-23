@@ -16,3 +16,18 @@ echo '{"status":"ok"}' | sudo tee /var/www/api/health.json >/dev/null
 TOKEN="$(openssl rand -hex 32)" ;echo "YOUR_TOKEN=$TOKEN"
 sudo htpasswd -c /etc/nginx/.htpasswd portaluser
 
+cp index.html /var/www/html/index.html
+cp portal.conf /etc/nginx/conf.d/portal.conf
+cp nginx.conf /etc/nginx/nginx.conf
+
+# certs
+sudo mkdir -p /etc/nginx/certs
+cp openssh-ip.cnf /etc/nginx/certs/openssl-ip.cnf
+sudo openssl req -x509 -nodes -days 825 -newkey rsa:2048 \
+  -keyout /etc/nginx/certs/nginx.key \
+  -out /etc/nginx/certs/nginx.crt \
+  -config /etc/nginx/certs/openssl-ip.cnf \
+  -extensions req_ext
+
+sudo chmod 600 /etc/nginx/certs/nginx.key
+
