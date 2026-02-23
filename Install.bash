@@ -36,3 +36,6 @@ sudo nginx -t && sudo systemctl reload nginx
 
 setenforce 0
 echo "YOUR_TOKEN=$TOKEN"
+
+IP=`hostname -I | awk '{print $1}'`
+echo "curl -ik -H \"Authorization: Bearer #TOKEN\" https://$IP/api/dynatrace/report.txt
