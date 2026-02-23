@@ -22,7 +22,7 @@ cp nginx.conf /etc/nginx/nginx.conf
 
 # certs
 sudo mkdir -p /etc/nginx/certs
-cp openssh-ip.cnf /etc/nginx/certs/openssl-ip.cnf
+cp openssl-ip.cnf /etc/nginx/certs/openssl-ip.cnf
 sudo openssl req -x509 -nodes -days 825 -newkey rsa:2048 \
   -keyout /etc/nginx/certs/nginx.key \
   -out /etc/nginx/certs/nginx.crt \
