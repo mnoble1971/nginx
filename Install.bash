@@ -38,4 +38,4 @@ setenforce 0
 echo "YOUR_TOKEN=$TOKEN"
 
 IP=`hostname -I | awk '{print $1}'`
-echo "curl -ik -H \"Authorization: Bearer #TOKEN\" https://$IP/api/dynatrace/report.txt"
+echo "curl -ik -H \"Authorization: Bearer $TOKEN\" https://$IP/api/dynatrace/report.txt"
