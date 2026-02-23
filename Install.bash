@@ -31,3 +31,6 @@ sudo openssl req -x509 -nodes -days 825 -newkey rsa:2048 \
 
 sudo chmod 600 /etc/nginx/certs/nginx.key
 
+sudo nginx -t && sudo systemctl reload nginx
+
+setenforce 0
